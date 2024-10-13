@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dni5vb1iypuy8"]
+
+[ext_resource type="PackedScene" uid="uid://nv701fwk0x2v" path="res://src/player/player3d.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dlw8usluobwhn" path="res://src/world/Room3.tscn" id="2"]
+[ext_resource type="Script" path="res://src/world/World.gd" id="3"]
+
+[sub_resource type="SphereShape3D" id="1"]
+radius = 11.3416
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7n1g"]
+
+[sub_resource type="Sky" id="Sky_ttnsi"]
+sky_material = SubResource("ProceduralSkyMaterial_y7n1g")
+
+[sub_resource type="Environment" id="Environment_exuj1"]
+background_mode = 2
+sky = SubResource("Sky_ttnsi")
+
+[node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183532, 0)
+script = ExtResource("3")
+
+[node name="player" parent="." instance=ExtResource("1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 7.191, 0)
+
+[node name="switcher" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2908, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="switcher"]
+shape = SubResource("1")
+
+[node name="Room3" parent="." instance=ExtResource("2")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.24664, 29.5331, 0)
+light_color = Color(0.870588, 0.870588, 0.54902, 1)
+shadow_enabled = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.073447, 0.997299, 0, -0.997299, 0.073447, -2.2771, 53.573, 3.91559)
+light_color = Color(0.913725, 0.701961, 0.796078, 1)
+light_energy = 13.929
+spot_range = 1646.93
+spot_attenuation = 0.482968
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_exuj1")
+
+[connection signal="body_entered" from="switcher" to="." method="_on_switcher_body_entered"]

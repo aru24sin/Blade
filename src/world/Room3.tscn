@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlw8usluobwhn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3qw20"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqxl1"]
+shading_mode = 0
+albedo_color = Color(1, 0.317647, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i2jg"]
+shading_mode = 0
+albedo_color = Color(0.658824, 0.423529, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bthxt"]
+shading_mode = 0
+albedo_color = Color(1, 0.164706, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fr0p"]
+shading_mode = 0
+albedo_color = Color(1, 0.164706, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mj304"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywy48"]
+shading_mode = 0
+albedo_color = Color(0.803922, 0.2, 1, 1)
+
+[node name="Room3" type="Node3D"]
+transform = Transform3D(1.3, 0, 0, 0, 1.2, 0, 0, 0, 1.4, 0, 0, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(105.909, 0, 0, 0, 0.0476254, 0, 0, 0, 78.5597, 0, 0, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_3qw20")
+material = SubResource("StandardMaterial3D_jqxl1")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(105.909, 0, 0, 0, -2.08177e-09, -78.5597, 0, 0.0476254, -3.43396e-06, 0, 39.2214, -38.7014)
+use_collision = true
+mesh = SubResource("BoxMesh_3qw20")
+material = SubResource("StandardMaterial3D_8i2jg")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(105.909, 0, 0, 0, -2.08177e-09, -78.5597, 0, 0.0476254, -3.43396e-06, 0, 39.2214, 38.87)
+use_collision = true
+mesh = SubResource("BoxMesh_3qw20")
+material = SubResource("StandardMaterial3D_8i2jg")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.62944e-06, -0.0476254, 0, -4.62944e-06, 9.09972e-17, -78.5597, 105.909, -2.08177e-09, -3.43396e-06, 52, 39.2214, -2.4157)
+use_collision = true
+mesh = SubResource("BoxMesh_3qw20")
+material = SubResource("StandardMaterial3D_bthxt")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.62944e-06, -0.0476254, 0, -4.62944e-06, 9.09972e-17, -78.5597, 105.909, -2.08177e-09, -3.43396e-06, -52, 39.2214, -2.4157)
+use_collision = true
+mesh = SubResource("BoxMesh_3qw20")
+material = SubResource("StandardMaterial3D_6fr0p")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
+transform = Transform3D(105.909, 0, 0, 0, 0.0476254, 0, 0, 0, 78.5597, 0, 77, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_3qw20")
+material = SubResource("StandardMaterial3D_8i2jg")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="." groups=["point"]]
+transform = Transform3D(28.875, 0, 0, 0, 5.04, 0, 0, 0, 24.3, 40.7692, 7.5, 31.4286)
+use_collision = true
+mesh = SubResource("BoxMesh_mj304")
+material = SubResource("StandardMaterial3D_ywy48")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="." groups=["point"]]
+transform = Transform3D(49.0875, 0, 0, 0, 5.04, 0, 0, 0, 24.3, -33.0769, 17.5, 31.4286)
+use_collision = true
+mesh = SubResource("BoxMesh_mj304")
+material = SubResource("StandardMaterial3D_ywy48")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="." groups=["point"]]
+transform = Transform3D(49.0875, 0, 0, 0, 5.04, 0, 0, 0, 43.74, -43.8462, 43.3333, -39.2857)
+use_collision = true
+mesh = SubResource("BoxMesh_mj304")
+material = SubResource("StandardMaterial3D_ywy48")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="." groups=["point"]]
+transform = Transform3D(49.0875, 0, 0, 0, 5.04, 0, 0, 0, 43.74, 32.3077, 32.5, -39.2857)
+use_collision = true
+mesh = SubResource("BoxMesh_mj304")
+material = SubResource("StandardMaterial3D_ywy48")
