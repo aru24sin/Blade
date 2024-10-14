@@ -7,14 +7,18 @@
 [sub_resource type="SphereShape3D" id="1"]
 radius = 11.3416
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y7n1g"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yaobp"]
+sky_top_color = Color(1, 0.440668, 0.821809, 1)
+sky_horizon_color = Color(0.328809, 0.832026, 0.850167, 1)
+ground_bottom_color = Color(0.328809, 0.832026, 0.850167, 1)
+ground_horizon_color = Color(0.328809, 0.832026, 0.850167, 1)
 
-[sub_resource type="Sky" id="Sky_ttnsi"]
-sky_material = SubResource("ProceduralSkyMaterial_y7n1g")
+[sub_resource type="Sky" id="Sky_821dr"]
+sky_material = SubResource("ProceduralSkyMaterial_yaobp")
 
 [sub_resource type="Environment" id="Environment_exuj1"]
 background_mode = 2
-sky = SubResource("Sky_ttnsi")
+sky = SubResource("Sky_821dr")
 
 [node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183532, 0)
