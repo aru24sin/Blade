@@ -1,13 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bxx20fgca3dou"]
 
-[ext_resource type="Shader" path="res://assets/shaders/PSXMaterial.gdshader" id="1_yuoqv"]
-[ext_resource type="Texture2D" uid="uid://cxjxvqmf4boxq" path="res://assets/textures/green.png" id="2_itfkf"]
+[ext_resource type="Shader" path="res://assets/shaders/PSXMaterial.gdshader" id="1_y41ar"]
+[ext_resource type="Texture2D" uid="uid://cxjxvqmf4boxq" path="res://assets/textures/green.png" id="2_07fyv"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_yuoqv")
+shader = ExtResource("1_y41ar")
 shader_parameter/affine_mapping = false
 shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.782
+shader_parameter/jitter = 0.85
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("2_itfkf")
+shader_parameter/albedo = ExtResource("2_07fyv")
