@@ -6,13 +6,13 @@ signal dashDid
 var health := 100.0
 var MOUSE_SENS := 0.010
 var gravity := -2.5
-var defaultSpeed := 60.0
-var speed := 75.0
+var defaultSpeed := 120
+var speed := 120
 var angForCamToLearpTo := 0.0
 var XangForCamToLearpTo := 0.0
 var vel := Vector3.ZERO
 var ySpeed := 0.0
-var jumpStrength := 85
+var jumpStrength := 90
 var jumpNum := 0
 var maxJumpAmt := 2
 
@@ -65,9 +65,9 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_pressed("run"):
-		speed = 100
+		speed = 120
 	elif Input.is_action_just_released("run"):
-		speed = 75
+		speed = 120
 
 	if Input.is_action_just_pressed("f") and (dashNum < maxDashAmt):
 		dashFoward()
