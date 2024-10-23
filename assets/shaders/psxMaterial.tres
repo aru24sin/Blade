@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bxx20fgca3dou"]
 
-[ext_resource type="Shader" path="res://src/world/PSXMaterial.gdshader" id="1_yuoqv"]
+[ext_resource type="Shader" path="res://assets/shaders/PSXMaterial.gdshader" id="1_yuoqv"]
 [ext_resource type="Texture2D" uid="uid://cxjxvqmf4boxq" path="res://assets/textures/green.png" id="2_itfkf"]
 
 [resource]

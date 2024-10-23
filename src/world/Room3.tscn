@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlw8usluobwhn"]
 
-[ext_resource type="Material" uid="uid://bxx20fgca3dou" path="res://assets/textures/psxMaterial.tres" id="1_tsj0d"]
-[ext_resource type="Shader" path="res://src/world/PSXMaterial.gdshader" id="1_xsh2m"]
+[ext_resource type="Material" uid="uid://bxx20fgca3dou" path="res://assets/shaders/psxMaterial.tres" id="1_tsj0d"]
+[ext_resource type="Shader" path="res://assets/shaders/PSXMaterial.gdshader" id="1_xsh2m"]
 [ext_resource type="Texture2D" uid="uid://cl4kewig3pk7s" path="res://assets/textures/purple.png" id="2_70s3w"]
-[ext_resource type="Material" uid="uid://d25tdobwi1e0p" path="res://assets/textures/psxWalls.tres" id="3_vo3ox"]
+[ext_resource type="Material" uid="uid://d25tdobwi1e0p" path="res://assets/shaders/psxWalls.tres" id="3_vo3ox"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3qw20"]
 

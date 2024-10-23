@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Blade"
-run/main_scene="res://src/world/World.tscn"
+run/main_scene="res://src/world/postprocessing.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://rj43i5q0vlx1"]
 
-[ext_resource type="Shader" path="res://src/world/postprocessing.gdshader" id="1_05vwj"]
+[ext_resource type="Shader" path="res://assets/shaders/postprocessing.gdshader" id="1_05vwj"]
 [ext_resource type="PackedScene" uid="uid://dni5vb1iypuy8" path="res://src/world/World.tscn" id="1_g2nym"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rvbn6"]
@@ -15,10 +15,6 @@ material = SubResource("ShaderMaterial_rvbn6")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 3.0
-offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
