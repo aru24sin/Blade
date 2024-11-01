@@ -8,6 +8,9 @@
 [node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988919, 0)
 script = ExtResource("1")
+gravity = -3.0
+angForCamToLearpTo = 100.0
+XangForCamToLearpTo = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_cbtg8")

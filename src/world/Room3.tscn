@@ -1,20 +1,16 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlw8usluobwhn"]
 
 [ext_resource type="Material" uid="uid://bxx20fgca3dou" path="res://assets/shaders/psxMaterial.tres" id="1_tsj0d"]
-[ext_resource type="Shader" path="res://assets/shaders/PSXMaterial.gdshader" id="1_xsh2m"]
 [ext_resource type="Texture2D" uid="uid://cl4kewig3pk7s" path="res://assets/textures/purple.png" id="2_70s3w"]
 [ext_resource type="Material" uid="uid://d25tdobwi1e0p" path="res://assets/shaders/psxWalls.tres" id="3_vo3ox"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_3qw20"]
+[sub_resource type="BoxMesh" id="BoxMesh_cxiga"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir1v8"]
-render_priority = 0
-shader = ExtResource("1_xsh2m")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("2_70s3w")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7su3"]
+shading_mode = 0
+albedo_texture = ExtResource("2_70s3w")
+
+[sub_resource type="BoxMesh" id="BoxMesh_3qw20"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_mj304"]
 
@@ -22,10 +18,10 @@ shader_parameter/albedo = ExtResource("2_70s3w")
 transform = Transform3D(1.3, 0, 0, 0, 1.2, 0, 0, 0, 1.4, 0, 0, 0)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(105.909, 0, 0, 0, 0.0476254, 0, 0, 0, 78.5597, -0.243877, 0, 0)
+transform = Transform3D(1257.99, 0, 0, 0, 1.06742, 0, 0, 0, 620.675, -0.243877, 0, 0)
 use_collision = true
-mesh = SubResource("BoxMesh_3qw20")
-material = SubResource("ShaderMaterial_ir1v8")
+mesh = SubResource("BoxMesh_cxiga")
+material = SubResource("StandardMaterial3D_s7su3")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
 transform = Transform3D(105.909, 0, 0, 0, -2.08177e-09, -78.5597, 0, 0.0476254, -3.43396e-06, 0, 39.2214, -38.7014)

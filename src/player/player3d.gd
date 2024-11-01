@@ -3,34 +3,37 @@ extends CharacterBody3D
 
 signal dashDid
 
-var health := 100.0
-var MOUSE_SENS := 0.010
-var gravity := -2.5
-var defaultSpeed := 120
-var speed := 120
-var angForCamToLearpTo := 0.0
-var XangForCamToLearpTo := 0.0
-var vel := Vector3.ZERO
-var ySpeed := 0.0
-var jumpStrength := 90
+@export var health := 100.0
+@export var MOUSE_SENS := 0.010
+@export var gravity := -2.5
+@export var speed := 120
+@export var angForCamToLearpTo := 0.0
+@export var XangForCamToLearpTo := 0.0
+@export var vel := Vector3.ZERO
+@export var ySpeed := 0.0
+@export var jumpStrength := 90
 var jumpNum := 0
-var maxJumpAmt := 2
+@export var maxJumpAmt := 2
 
 
 var canDash := true
 var dashNum := 0
-var extraVelMulti := 400
-var maxDashAmt := 2
+@export var extraVelMulti := 400
+@export var maxDashAmt := 2
 var extraVel := Vector3.ZERO
+
+@onready var camera = $head/Camera3D
 
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		$head.rotation.x += -event.relative.y * MOUSE_SENS
 		rotation.y += -event.relative.x * MOUSE_SENS
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 
 func _process(delta: float) -> void:
