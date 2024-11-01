@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b455u7m5t1ke7"]
+
+[ext_resource type="Script" path="res://src/enemy/enemy.gd" id="1_lgm4q"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e3p4l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efs50"]
+albedo_color = Color(1, 0.356835, 0.570628, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_80yc1"]
+material = SubResource("StandardMaterial3D_efs50")
+
+[node name="enemy" type="CharacterBody3D" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_lgm4q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_e3p4l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_80yc1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 5.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

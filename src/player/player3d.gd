@@ -2,23 +2,24 @@ extends CharacterBody3D
 
 
 signal dashDid
+signal damage
 
 @export var health := 100.0
 @export var MOUSE_SENS := 0.010
-@export var gravity := -2.5
-@export var speed := 120
+@export var gravity := -0.7
+@export var speed := 20
 @export var angForCamToLearpTo := 0.0
 @export var XangForCamToLearpTo := 0.0
 @export var vel := Vector3.ZERO
 @export var ySpeed := 0.0
-@export var jumpStrength := 90
+@export var jumpStrength := 20
 var jumpNum := 0
 @export var maxJumpAmt := 2
 
 
 var canDash := true
 var dashNum := 0
-@export var extraVelMulti := 400
+@export var extraVelMulti := 150
 @export var maxDashAmt := 2
 var extraVel := Vector3.ZERO
 
@@ -33,7 +34,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		$head.rotation.x += -event.relative.y * MOUSE_SENS
 		rotation.y += -event.relative.x * MOUSE_SENS
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		
+		$head.rotation.x = clamp($head.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 
 
 func _process(delta: float) -> void:
@@ -53,7 +55,7 @@ func dashFoward() -> void:
 
 
 func _physics_process(delta: float) -> void:
-#	print(is_on_wall())
+	
 	vel = get_dir().rotated( Vector3.UP, rotation.y) * speed
 	if !is_on_floor() :
 		ySpeed += gravity
@@ -68,15 +70,16 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_pressed("run"):
-		speed = 120
+		speed = 35
 	elif Input.is_action_just_released("run"):
-		speed = 120
+		speed = 20
 
 	if Input.is_action_just_pressed("f") and (dashNum < maxDashAmt):
 		dashFoward()
 	extraVel = lerp( extraVel, Vector3.ZERO, 0.1 )
 	vel += extraVel
 
+	
 	set_velocity(vel)
 	set_up_direction(Vector3.UP)
 	move_and_slide()

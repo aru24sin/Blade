@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dni5vb1iypuy8"]
+[gd_scene load_steps=9 format=3 uid="uid://dni5vb1iypuy8"]
 
 [ext_resource type="PackedScene" uid="uid://nv701fwk0x2v" path="res://src/player/player3d.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dlw8usluobwhn" path="res://src/world/Room3.tscn" id="2"]
 [ext_resource type="Script" path="res://src/world/World.gd" id="3"]
-
-[sub_resource type="SphereShape3D" id="1"]
-radius = 11.3416
+[ext_resource type="PackedScene" uid="uid://b455u7m5t1ke7" path="res://src/enemy/Enemy.tscn" id="4_aemvq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i2e6w"]
 
@@ -25,34 +23,32 @@ volumetric_fog_albedo = Color(0.278332, 0.333541, 0.411956, 1)
 volumetric_fog_emission_energy = 38.73
 volumetric_fog_length = 15.5
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_4u3xb"]
+vertices = PackedVector3Array(-16.8453, 0.391775, -17.8044, -16.8453, 0.391775, 17.6956, 16.9047, 0.391775, 17.6956, 16.9047, 0.391775, -17.8044)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_height = 0.1
+agent_max_climb = 0.1
+
 [node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183532, 0)
 script = ExtResource("3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(1, 1, 0.815686, 1)
 shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 8.27205, 0)
-
-[node name="switcher" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2908, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="switcher"]
-shape = SubResource("1")
-
-[node name="Room3" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31031, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_exuj1")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.00933736, 0.999956, 0, -0.999956, 0.00933736, 0, 42.8917, 0)
-light_color = Color(0.980747, 0.803279, 0.883981, 1)
-light_energy = 16.0
-spot_range = 2752.8
-spot_attenuation = 0.49
-spot_angle_attenuation = 0.233259
+[node name="enemy" parent="." instance=ExtResource("4_aemvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0884829, 1.2721, -11.9021)
 
-[connection signal="body_entered" from="switcher" to="." method="_on_switcher_body_entered"]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_4u3xb")
+
+[node name="Room3" parent="NavigationRegion3D" instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, -6.692, -2.32232e-07, 0, 1.01046e-06, -1.538, 0, 0, 0)
