@@ -39,16 +39,16 @@ light_color = Color(1, 1, 0.815686, 1)
 shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31031, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31031, 0.108386)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_exuj1")
-
-[node name="enemy" parent="." instance=ExtResource("4_aemvq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0884829, 1.2721, -11.9021)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_4u3xb")
 
 [node name="Room3" parent="NavigationRegion3D" instance=ExtResource("2")]
 transform = Transform3D(1, 0, 0, 0, -6.692, -2.32232e-07, 0, 1.01046e-06, -1.538, 0, 0, 0)
+
+[node name="enemy" parent="." instance=ExtResource("4_aemvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63749, -10.3128)

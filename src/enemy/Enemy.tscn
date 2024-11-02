@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b455u7m5t1ke7"]
+[gd_scene load_steps=7 format=3 uid="uid://b455u7m5t1ke7"]
 
 [ext_resource type="Script" path="res://src/enemy/enemy.gd" id="1_lgm4q"]
+[ext_resource type="PackedScene" uid="uid://bnaa70hxrotvd" path="res://src/health/healthbar.tscn" id="2_l2e8o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e3p4l"]
 
@@ -9,6 +10,9 @@ albedo_color = Color(1, 0.356835, 0.570628, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_80yc1"]
 material = SubResource("StandardMaterial3D_efs50")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xjbb8"]
+viewport_path = NodePath("SubViewport")
 
 [node name="enemy" type="CharacterBody3D" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -25,6 +29,19 @@ target_desired_distance = 5.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="Control" parent="SubViewport" instance=ExtResource("2_l2e8o")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.272, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_xjbb8")
+region_enabled = true
+region_rect = Rect2(0.0499878, 2.768, 204, 25)
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

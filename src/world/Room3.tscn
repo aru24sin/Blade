@@ -1,11 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlw8usluobwhn"]
+[gd_scene load_steps=7 format=3 uid="uid://dlw8usluobwhn"]
 
+[ext_resource type="Texture2D" uid="uid://cxjxvqmf4boxq" path="res://assets/textures/green.png" id="1_3787i"]
 [ext_resource type="Texture2D" uid="uid://cl4kewig3pk7s" path="res://assets/textures/purple.png" id="2_70s3w"]
+[ext_resource type="Shader" path="res://assets/shaders/PSXMaterial.gdshader" id="2_m3a4d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_p4gaw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_657s0"]
 albedo_texture = ExtResource("2_70s3w")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdmxl"]
+render_priority = 0
+shader = ExtResource("2_m3a4d")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.787
+shader_parameter/resolution = Vector2i(320, 240)
+shader_parameter/albedo = ExtResource("1_3787i")
 
 [node name="Room3" type="Node3D"]
 transform = Transform3D(0.065, 0, 0, 0, -0.435, -1.50996e-08, 0, 6.56832e-08, -0.1, 0, 0, 0)
@@ -15,3 +26,21 @@ transform = Transform3D(34.6906, 0, 0, 0, 0.0622303, -1.02318e-12, 0, -3.90799e-
 use_collision = true
 mesh = SubResource("BoxMesh_p4gaw")
 material = SubResource("StandardMaterial3D_657s0")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(10.847, 0, 0, 0, 0.0622303, -3.12639e-13, 0, -6.39488e-14, 4.71679, -10.1952, -1.22119, 8.8413)
+use_collision = true
+mesh = SubResource("BoxMesh_p4gaw")
+material = SubResource("ShaderMaterial_hdmxl")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(10.847, 0, 0, 0, 0.0622302, -4.26326e-13, 0, -9.23706e-14, 4.71679, 13.3486, -2.10269, -8.50125)
+use_collision = true
+mesh = SubResource("BoxMesh_p4gaw")
+material = SubResource("ShaderMaterial_hdmxl")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(10.847, 0, 0, 0, 0.0622302, -4.54747e-13, 0, -1.03029e-13, 4.71679, 13.3486, -3.08435, 10.9768)
+use_collision = true
+mesh = SubResource("BoxMesh_p4gaw")
+material = SubResource("ShaderMaterial_hdmxl")

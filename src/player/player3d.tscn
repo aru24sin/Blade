@@ -30,6 +30,7 @@ visible = false
 texture = ExtResource("2")
 
 [node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.61859, 0, 0, 0)
 target_position = Vector3(0, 0, -1)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnaa70hxrotvd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuuh0"]
+bg_color = Color(0.145868, 0.145868, 0.145868, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad3dn"]
+bg_color = Color(1, 0.28028, 0.5727, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 201.0
+offset_bottom = 24.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 23.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kuuh0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ad3dn")
+show_percentage = false

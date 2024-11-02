@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 
 signal dashDid
-signal damage
 
 @export var health := 100.0
 @export var MOUSE_SENS := 0.010
@@ -15,7 +14,7 @@ signal damage
 @export var jumpStrength := 20
 var jumpNum := 0
 @export var maxJumpAmt := 2
-
+@export var damage := 20
 
 var canDash := true
 var dashNum := 0
@@ -24,6 +23,7 @@ var dashNum := 0
 var extraVel := Vector3.ZERO
 
 @onready var camera = $head/Camera3D
+@onready var raycast = $head/Camera3D/RayCast3D
 
 
 func _ready() -> void:
@@ -68,6 +68,8 @@ func _physics_process(delta: float) -> void:
 		jump()
 	vel.y = ySpeed
 	
+	if Input.is_action_just_pressed("attack"):
+		attack(damage)
 	
 	if Input.is_action_pressed("run"):
 		speed = 35
@@ -87,6 +89,12 @@ func _physics_process(delta: float) -> void:
 	$head.rotation_degrees.z = lerp($head.rotation_degrees.z, angForCamToLearpTo, 0.1)
 	$head/Camera3D.rotation_degrees.x = lerp($head/Camera3D.rotation_degrees.x, XangForCamToLearpTo, 0.1)
 
+func attack(damage):
+	if raycast.is_colliding():
+		var enemy = raycast.get_collider()
+		if enemy.has_method("take_damage"):
+			enemy.take_damage(damage)
+	
 
 func tweenComplete() -> void:
 	$head/Camera3D/camTweenBack.interpolate_property($head/Camera3D,"fov", 94, 90,0.07,Tween.TRANS_QUART,Tween.EASE_IN,0)
