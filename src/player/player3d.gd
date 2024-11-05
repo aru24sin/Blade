@@ -11,7 +11,7 @@ signal dashDid
 @export var XangForCamToLearpTo := 0.0
 @export var vel := Vector3.ZERO
 @export var ySpeed := 0.0
-@export var jumpStrength := 20
+@export var jumpStrength := 17
 var jumpNum := 0
 @export var maxJumpAmt := 2
 @export var damage := 20
@@ -43,8 +43,13 @@ func _process(delta: float) -> void:
 		get_tree().reload_current_scene()
 
 func jump() -> void:
-	jumpNum += 1
-	ySpeed = jumpStrength
+	if jumpNum == 0:
+		jumpNum += 1
+		ySpeed = jumpStrength
+	elif jumpNum == 1:
+		jumpNum += 1
+		ySpeed = 22
+	
 
 func dashFoward() -> void:
 	emit_signal("dashDid")
