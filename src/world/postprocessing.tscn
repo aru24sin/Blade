@@ -34,7 +34,8 @@ text = "esc  - quit
 r - restart
 WASD - move
 f - dash
-space - jump"
+space - jump
+attack - left mouse button"
 label_settings = SubResource("LabelSettings_63xc0")
 
 [node name="SubViewport" type="SubViewport" parent="."]

@@ -56,7 +56,7 @@ func dashFoward() -> void:
 	dashNum += 1
 	if sign(ySpeed) == -1:
 		ySpeed = 0
-	extraVel += ($head/Camera3D/Marker3D.global_transform.origin - $head/Camera3D.global_transform.origin).normalized()*extraVelMulti
+	extraVel += ($head/Camera3D/Marker3D.global_transform.origin - $head/Camera3D.global_transform.origin).normalized() * extraVelMulti
 
 
 func _physics_process(delta: float) -> void:
