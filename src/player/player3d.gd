@@ -11,7 +11,7 @@ signal dashDid
 @export var vel := Vector3.ZERO
 @export var ySpeed := 0.0
 @export var jumpStrength := 17
-@export var extraVelMulti := 150
+@export var extraVelMulti := 110
 @export var maxDashAmt := 2
 @export var maxJumpAmt := 2
 @export var damage := 20
@@ -51,6 +51,7 @@ func dashFoward() -> void:
 	dashNum += 1
 	if sign(ySpeed) == -1:
 		ySpeed = 0
+	$AnimationPlayer.play("camera_fov")
 	extraVel += ($head/Camera3D/Marker3D.global_transform.origin - $head/Camera3D.global_transform.origin).normalized() * extraVelMulti
 
 func _physics_process(delta: float) -> void:
@@ -76,6 +77,10 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("f") and (dashNum < maxDashAmt):
 		dashFoward()
+	
+	if Input.is_action_just_released("f"):
+		$AnimationPlayer.play("camera_reset")
+		
 	extraVel = lerp( extraVel, Vector3.ZERO, 0.1 )
 	vel += extraVel
 	

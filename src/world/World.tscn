@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b455u7m5t1ke7" path="res://src/enemy/Enemy.tscn" id="4_aemvq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jmbnt"]
-sky_top_color = Color(0.0280611, 0.0419236, 0.0627314, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
-ground_bottom_color = Color(0.0965389, 0.0968545, 0.110252, 1)
-ground_horizon_color = Color(0.120504, 0.124479, 0.130756, 1)
+sky_top_color = Color(0.390986, 0.460435, 0.557063, 1)
+sky_horizon_color = Color(0.118581, 0.118581, 0.118581, 1)
+ground_bottom_color = Color(0.102127, 0.102455, 0.116337, 1)
+ground_horizon_color = Color(0.100563, 0.104096, 0.109674, 1)
 
 [sub_resource type="Sky" id="Sky_o1q7l"]
 sky_material = SubResource("ProceduralSkyMaterial_jmbnt")
