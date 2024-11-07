@@ -15,16 +15,13 @@ signal dashDid
 @export var maxDashAmt := 2
 @export var maxJumpAmt := 2
 @export var damage := 20
-@export var stamina := 100
-@export var maxStamina := 100  # Maximum stamina
-@export var staminaRegenRate := 5  # Stamina regenerated per second
-@export var staminaDashCost := 20  # Stamina cost for dashing
-@export var staminaRunCost := 10  # Stamina cost per second while running
 
 var jumpNum := 0
 var canDash := true
 var dashNum := 0
 var extraVel := Vector3.ZERO
+var stamina_timer := 0.0
+var is_using_stamina := false
 
 @onready var camera = $head/Camera3D
 @onready var raycast = $head/Camera3D/RayCast3D
@@ -42,21 +39,13 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("r"):
 		get_tree().reload_current_scene()
 
-	# Regenerate stamina when not running or dashing
-	if !Input.is_action_pressed("run") and !Input.is_action_pressed("f"):
-		stamina = min(stamina + staminaRegenRate * delta, maxStamina)
-
 func jump() -> void:
-	if jumpNum == 0:
+	if jumpNum < maxJumpAmt:
 		jumpNum += 1
-		ySpeed = jumpStrength
-	elif jumpNum == 1:
-		jumpNum += 1
-		ySpeed = 22	
+		ySpeed = jumpStrength if jumpNum == 1 else 22
 
 func dashFoward() -> void:
-	if stamina >= staminaDashCost and dashNum < maxDashAmt:
-		stamina -= staminaDashCost
+	if dashNum < maxDashAmt:
 		emit_signal("dashDid")
 		dashNum += 1
 		if sign(ySpeed) == -1:
@@ -74,7 +63,7 @@ func _physics_process(delta: float) -> void:
 		canDash = true
 		dashNum = 0
 		jumpNum = 0
-	if Input.is_action_just_pressed("space") and (jumpNum < maxJumpAmt):
+	if Input.is_action_just_pressed("space"):
 		jump()
 	vel.y = ySpeed
 	
@@ -82,9 +71,8 @@ func _physics_process(delta: float) -> void:
 		attack(damage)
 	
 	# Running with stamina check
-	if Input.is_action_pressed("run") and stamina > 0:
+	if Input.is_action_pressed("run"):
 		speed = 35
-		stamina = max(stamina - staminaRunCost * delta, 0)  # Reduce stamina while running
 	else:
 		speed = 20  # Reset to normal speed when not running
 
