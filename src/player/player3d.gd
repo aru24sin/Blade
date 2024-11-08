@@ -5,7 +5,7 @@ signal dashDid
 @export var health := 100.0
 @export var MOUSE_SENS := 0.010
 @export var gravity := -0.7
-@export var speed := 20
+@export var speed := 28
 @export var angForCamToLearpTo := 0.0
 @export var XangForCamToLearpTo := 0.0
 @export var vel := Vector3.ZERO
@@ -69,12 +69,6 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack"):
 		attack(damage)
-	
-	# Running with stamina check
-	if Input.is_action_pressed("run"):
-		speed = 35
-	else:
-		speed = 20  # Reset to normal speed when not running
 
 	# Dashing with stamina check
 	if Input.is_action_just_pressed("f"):
