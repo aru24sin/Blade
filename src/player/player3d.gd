@@ -68,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	vel.y = ySpeed
 	
 	if Input.is_action_just_pressed("attack"):
+		$AnimationPlayer.play("sword attack")
 		attack(damage)
 
 	# Dashing with stamina check

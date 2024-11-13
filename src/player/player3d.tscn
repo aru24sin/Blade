@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://nv701fwk0x2v"]
+[gd_scene load_steps=11 format=3 uid="uid://nv701fwk0x2v"]
 
 [ext_resource type="Script" path="res://src/player/player3d.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dgnugu3vp2kq0" path="res://icon.png" id="2"]
@@ -18,6 +18,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [95.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGMesh3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.981446, 0.466701, -0.618038)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSGMesh3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0136328, -0.0650588, -0.279109)]
 }
 
 [sub_resource type="Animation" id="Animation_3up5k"]
@@ -52,12 +76,46 @@ tracks/0/keys = {
 "values": [120.0, 95.0]
 }
 
+[sub_resource type="Animation" id="Animation_3fw4r"]
+resource_name = "sword attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGMesh3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.926263, 0.289659, -0.618038), Vector3(-0.659324, 0.0636213, -0.618038), Vector3(0.926263, 0.289659, -0.618038)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGMesh3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0242317, -0.0619017, -0.858028), Vector3(-0.659747, 2.93863, -2.13913), Vector3(-0.0242317, -0.0619017, -0.858028)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fruwa"]
 _data = {
 "RESET": SubResource("Animation_mnxf2"),
 "camera_fov": SubResource("Animation_3up5k"),
-"camera_reset": SubResource("Animation_swift")
+"camera_reset": SubResource("Animation_swift"),
+"sword attack": SubResource("Animation_3fw4r")
 }
+
+[sub_resource type="BoxMesh" id="BoxMesh_ex6p7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhxvi"]
+albedo_color = Color(0.908457, 0, 0.184909, 1)
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988919, 0)
@@ -84,7 +142,7 @@ visible = false
 texture = ExtResource("2")
 
 [node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.61859, 0, 0, 0)
+transform = Transform3D(0.414, 0, 0, 0, 0.414, 0, 0, 0, 1.5, 0, 0, 0)
 target_position = Vector3(0, 0, -1)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -95,3 +153,9 @@ omni_range = 6.80265
 libraries = {
 "": SubResource("AnimationLibrary_fruwa")
 }
+speed_scale = 1.927
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.00814697, 0.562682, -0.00308756, -0.00233898, 1.97346, -0.000647482, 0.000498825, 0.0636217, 0.047391, 0.981446, 0.466701, -0.618038)
+mesh = SubResource("BoxMesh_ex6p7")
+material = SubResource("StandardMaterial3D_hhxvi")
