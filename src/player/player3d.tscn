@@ -5,6 +5,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cbtg8"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_ex6p7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhxvi"]
+albedo_color = Color(0.908457, 0, 0.184909, 1)
+
 [sub_resource type="Animation" id="Animation_mnxf2"]
 length = 0.001
 tracks/0/type = "value"
@@ -22,7 +27,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CSGMesh3D:position")
+tracks/1/path = NodePath("head/CSGMesh3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +39,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CSGMesh3D:rotation")
+tracks/2/path = NodePath("head/CSGMesh3D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +51,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_3up5k"]
 resource_name = "camera_fov"
-length = 0.1
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -54,7 +59,7 @@ tracks/0/path = NodePath("head/Camera3D:fov")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [95.0, 120.0]
@@ -62,7 +67,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_swift"]
 resource_name = "camera_reset"
-length = 0.1
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -70,7 +75,7 @@ tracks/0/path = NodePath("head/Camera3D:fov")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [120.0, 95.0]
@@ -82,7 +87,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CSGMesh3D:position")
+tracks/0/path = NodePath("head/CSGMesh3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -94,7 +99,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CSGMesh3D:rotation")
+tracks/1/path = NodePath("head/CSGMesh3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -111,11 +116,6 @@ _data = {
 "camera_reset": SubResource("Animation_swift"),
 "sword attack": SubResource("Animation_3fw4r")
 }
-
-[sub_resource type="BoxMesh" id="BoxMesh_ex6p7"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhxvi"]
-albedo_color = Color(0.908457, 0, 0.184909, 1)
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988919, 0)
@@ -145,6 +145,11 @@ texture = ExtResource("2")
 transform = Transform3D(0.414, 0, 0, 0, 0.414, 0, 0, 0, 1.5, 0, 0, 0)
 target_position = Vector3(0, 0, -1)
 
+[node name="CSGMesh3D" type="CSGMesh3D" parent="head"]
+transform = Transform3D(0.00814697, 0.56268, -0.00308756, -0.00233898, 1.97346, -0.000647482, 0.000498825, 0.0636215, 0.047391, 0.981446, 0.466701, -0.618038)
+mesh = SubResource("BoxMesh_ex6p7")
+material = SubResource("StandardMaterial3D_hhxvi")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_energy = 2.0
 omni_range = 6.80265
@@ -153,9 +158,3 @@ omni_range = 6.80265
 libraries = {
 "": SubResource("AnimationLibrary_fruwa")
 }
-speed_scale = 1.927
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(0.00814697, 0.562682, -0.00308756, -0.00233898, 1.97346, -0.000647482, 0.000498825, 0.0636217, 0.047391, 0.981446, 0.466701, -0.618038)
-mesh = SubResource("BoxMesh_ex6p7")
-material = SubResource("StandardMaterial3D_hhxvi")
