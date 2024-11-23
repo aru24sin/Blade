@@ -22,6 +22,7 @@ var dashNum := 0
 var extraVel := Vector3.ZERO
 var stamina_timer := 0.0
 var is_using_stamina := false
+var attackCount = 0
 
 @onready var camera = $head/Camera3D
 @onready var raycast = $head/Camera3D/RayCast3D
@@ -68,7 +69,12 @@ func _physics_process(delta: float) -> void:
 	vel.y = ySpeed
 	
 	if Input.is_action_just_pressed("attack"):
-		$AnimationPlayer.play("sword attack")
+		attackCount += 1
+		if attackCount == 1:
+			$AnimationPlayer.play("sword attack")
+		else:
+			$AnimationPlayer.play("sword attack 2")
+			attackCount = 0
 		attack(damage)
 
 	# Dashing with stamina check
