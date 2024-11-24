@@ -5,7 +5,7 @@ signal dashDid
 @export var health := 100.0
 @export var MOUSE_SENS := 0.010
 @export var gravity := -0.7
-@export var speed := 28
+@export var speed := 25
 @export var angForCamToLearpTo := 0.0
 @export var XangForCamToLearpTo := 0.0
 @export var vel := Vector3.ZERO

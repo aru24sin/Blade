@@ -175,7 +175,7 @@ transform = Transform3D(0.414, 0, 0, 0, 0.414, 0, 0, 0, 1.5, 0, 0, 0)
 target_position = Vector3(0, 0, -1)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="head"]
-transform = Transform3D(0.00814697, 0.562681, -0.00308756, -0.00233898, 1.97346, -0.000647482, 0.000498825, 0.0636216, 0.047391, 0.981446, 0.466701, -0.618038)
+transform = Transform3D(0.00814697, 0.56268, -0.00308756, -0.00233898, 1.97346, -0.000647482, 0.000498825, 0.0636215, 0.047391, 0.981446, 0.466701, -0.618038)
 mesh = SubResource("BoxMesh_ex6p7")
 material = SubResource("StandardMaterial3D_hhxvi")
 
