@@ -76,6 +76,9 @@ func _physics_process(delta: float) -> void:
 			$AnimationPlayer.play("sword attack 2")
 			attackCount = 0
 		attack(damage)
+		
+	if Input.is_action_just_pressed("block"):
+		$AnimationPlayer.play("block")
 
 	# Dashing with stamina check
 	if Input.is_action_just_pressed("f"):
