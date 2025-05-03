@@ -58,7 +58,7 @@ void fragment()
 render_priority = 0
 shader = SubResource("Shader_62yar")
 shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("1_lmv1h")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.0
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("1_lmv1h")

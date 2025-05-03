@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxjxvqmf4boxq" path="res://assets/textures/green.png" id="1_3787i"]
 [ext_resource type="Texture2D" uid="uid://cl4kewig3pk7s" path="res://assets/textures/purple.png" id="2_70s3w"]
-[ext_resource type="Shader" path="res://assets/shaders/PSXMaterial.gdshader" id="2_m3a4d"]
+[ext_resource type="Shader" uid="uid://clsuj03c1unrl" path="res://assets/shaders/PSXMaterial.gdshader" id="2_m3a4d"]
 [ext_resource type="Material" uid="uid://bxx20fgca3dou" path="res://assets/shaders/psxMaterial.tres" id="4_x2hru"]
 [ext_resource type="Texture2D" uid="uid://d1h161t0v6hau" path="res://assets/textures/red.png" id="5_dk6ug"]
 
@@ -15,10 +15,10 @@ albedo_texture = ExtResource("2_70s3w")
 render_priority = 0
 shader = ExtResource("2_m3a4d")
 shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("1_3787i")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.638
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("1_3787i")
 
 [sub_resource type="BoxMesh" id="BoxMesh_hk5lm"]
 
@@ -78,10 +78,10 @@ void fragment()
 render_priority = 0
 shader = SubResource("Shader_62yar")
 shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("5_dk6ug")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.0
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("5_dk6ug")
 
 [node name="Room3" type="Node3D"]
 transform = Transform3D(0.052, 0, 0, 0, -0.435, -1.20797e-08, 0, 6.56832e-08, -0.08, 0, 0, 0)

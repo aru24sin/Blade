@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://nv701fwk0x2v"]
 
-[ext_resource type="Script" path="res://src/player/player3d.gd" id="1"]
+[ext_resource type="Script" uid="uid://clokjv1ju5rn1" path="res://src/player/player3d.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dgnugu3vp2kq0" path="res://icon.png" id="2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cbtg8"]
@@ -178,12 +178,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fruwa"]
 _data = {
-"RESET": SubResource("Animation_mnxf2"),
-"block": SubResource("Animation_2n71d"),
-"camera_fov": SubResource("Animation_3up5k"),
-"camera_reset": SubResource("Animation_swift"),
-"sword attack": SubResource("Animation_3fw4r"),
-"sword attack 2": SubResource("Animation_2tg1y")
+&"RESET": SubResource("Animation_mnxf2"),
+&"block": SubResource("Animation_2n71d"),
+&"camera_fov": SubResource("Animation_3up5k"),
+&"camera_reset": SubResource("Animation_swift"),
+&"sword attack": SubResource("Animation_3fw4r"),
+&"sword attack 2": SubResource("Animation_2tg1y")
 }
 
 [node name="player" type="CharacterBody3D" groups=["player"]]

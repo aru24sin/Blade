@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://nv701fwk0x2v" path="res://src/player/player3d.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dlw8usluobwhn" path="res://src/world/Room3.tscn" id="2"]
-[ext_resource type="Script" path="res://src/world/World.gd" id="3"]
+[ext_resource type="Script" uid="uid://c28mj518un5pj" path="res://src/world/World.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://b455u7m5t1ke7" path="res://src/enemy/Enemy.tscn" id="4_aemvq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jmbnt"]
