@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://smoke_bomb_scene"]
+
+[ext_resource type="Script" path="res://src/items/items/smoke_bomb.gd" id="1_smoke"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smoke"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.5, 0.5, 0.5, 0.7)
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_psx"]
+material = SubResource("StandardMaterial3D_smoke")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smoke"]
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector3(0, 0.3, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0.3, 0)
+scale_min = 2.0
+scale_max = 5.0
+color = Color(0.55, 0.55, 0.55, 0.75)
+color_ramp = null
+
+[node name="SmokeBomb" type="Node3D"]
+script = ExtResource("1_smoke")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 60
+lifetime = 4.0
+explosiveness = 0.3
+process_material = SubResource("ParticleProcessMaterial_smoke")
+draw_pass_1 = SubResource("SphereMesh_psx")

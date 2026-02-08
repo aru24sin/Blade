@@ -1,0 +1,385 @@
+[gd_scene load_steps=2 format=3 uid="uid://hud_scene"]
+
+[ext_resource type="Script" path="res://src/ui/hud/hud.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="HealthStaminaContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -60.0
+offset_right = 150.0
+offset_bottom = -10.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HealthStaminaContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="HealthContainer" type="VBoxContainer" parent="HealthStaminaContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="HealthLabel" type="Label" parent="HealthStaminaContainer/VBoxContainer/HealthContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 8
+text = "HP"
+
+[node name="HealthBarBG" type="Panel" parent="HealthStaminaContainer/VBoxContainer/HealthContainer"]
+custom_minimum_size = Vector2(120, 10)
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="HealthStaminaContainer/VBoxContainer/HealthContainer/HealthBarBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="StaminaContainer" type="VBoxContainer" parent="HealthStaminaContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StaminaLabel" type="Label" parent="HealthStaminaContainer/VBoxContainer/StaminaContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 8
+text = "ST"
+
+[node name="StaminaBarBG" type="Panel" parent="HealthStaminaContainer/VBoxContainer/StaminaContainer"]
+custom_minimum_size = Vector2(120, 6)
+layout_mode = 2
+
+[node name="StaminaBar" type="ProgressBar" parent="HealthStaminaContainer/VBoxContainer/StaminaContainer/StaminaBarBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="ItemSlot" type="Control" parent="."]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -50.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="ItemSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemSlot/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="ItemTitle" type="Label" parent="ItemSlot/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 7
+text = "ITEM"
+horizontal_alignment = 1
+
+[node name="ItemLabel" type="Label" parent="ItemSlot/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_font_sizes/font_size = 9
+text = "None"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UseHint" type="Label" parent="ItemSlot/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.45, 0.4, 1)
+theme_override_font_sizes/font_size = 7
+text = "[Q]"
+horizontal_alignment = 1
+
+[node name="KillFeed" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_constants/separation = 2
+
+[node name="Scoreboard" type="Control" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -100.0
+offset_right = 120.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Scoreboard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scoreboard/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="Scoreboard/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 14
+text = "SCOREBOARD"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Scoreboard/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="Scoreboard/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerHeader" type="Label" parent="Scoreboard/Panel/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "PLAYER"
+
+[node name="KillsHeader" type="Label" parent="Scoreboard/Panel/VBoxContainer/HeaderContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "K"
+horizontal_alignment = 1
+
+[node name="ScoreList" type="VBoxContainer" parent="Scoreboard/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="EffectsContainer" type="HBoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = -62.0
+grow_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="SpeedBoost" type="PanelContainer" parent="EffectsContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EffectsContainer/SpeedBoost"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 8
+text = "SPD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageBoost" type="PanelContainer" parent="EffectsContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EffectsContainer/DamageBoost"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5, 0.2, 1)
+theme_override_font_sizes/font_size = 8
+text = "DMG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shield" type="PanelContainer" parent="EffectsContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EffectsContainer/Shield"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.5, 0.9, 1)
+theme_override_font_sizes/font_size = 8
+text = "SHD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DualSwords" type="PanelContainer" parent="EffectsContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EffectsContainer/DualSwords"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 8
+text = "2X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crosshair" type="Control" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dot" type="ColorRect" parent="Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.95, 0.92, 0.88, 0.6)
+
+[node name="PauseMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.01, 0.04, 0.85)
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -80.0
+offset_right = 100.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PauseMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_colors/font_hover_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "RESUME"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_colors/font_hover_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "QUIT"
+
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

@@ -1,0 +1,463 @@
+[gd_scene load_steps=3 format=3 uid="uid://main_menu_scene"]
+
+[ext_resource type="Script" path="res://src/ui/main_menu/main_menu.gd" id="1_menu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.03, 0.015, 0.06, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.015, 0.06, 1)
+
+[node name="VignetteOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="MainPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -100.0
+offset_right = 80.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="TitleContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="MainPanel/VBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_colors/font_shadow_color = Color(0.85, 0.25, 0.35, 0.3)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "BLADE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MainPanel/VBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 8
+text = "SAMURAI COMBAT"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 4
+
+[node name="HostButton" type="Button" parent="MainPanel/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_colors/font_hover_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "HOST GAME"
+
+[node name="JoinButton" type="Button" parent="MainPanel/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_colors/font_hover_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "JOIN GAME"
+
+[node name="SettingsButton" type="Button" parent="MainPanel/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_colors/font_hover_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="MainPanel/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_colors/font_hover_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "QUIT"
+
+[node name="VersionLabel" type="Label" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.35, 0.3, 1)
+theme_override_font_sizes/font_size = 7
+text = "v0.1 ALPHA"
+horizontal_alignment = 1
+
+[node name="HostPanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -165.0
+offset_right = 120.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="HostPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HostPanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="HostPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 16
+text = "HOST GAME"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HostPanel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="HostPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "PORT"
+
+[node name="PortInput" type="LineEdit" parent="HostPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "7777"
+placeholder_text = "7777"
+alignment = 1
+
+[node name="MaxPlayersLabel" type="Label" parent="HostPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "MAX PLAYERS: 8"
+
+[node name="MaxPlayersSlider" type="HSlider" parent="HostPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+min_value = 2.0
+max_value = 16.0
+value = 8.0
+
+[node name="ModeLabel" type="Label" parent="HostPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "GAME MODE"
+
+[node name="GameModeOption" type="OptionButton" parent="HostPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+
+[node name="MapLabel" type="Label" parent="HostPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "MAP"
+
+[node name="MapOption" type="OptionButton" parent="HostPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+
+[node name="MapDescription" type="Label" parent="HostPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.45, 0.4, 1)
+theme_override_font_sizes/font_size = 7
+text = ""
+autowrap_mode = 2
+
+[node name="Spacer2" type="Control" parent="HostPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="HostPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="HostPanel/Panel/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "BACK"
+
+[node name="StartHostButton" type="Button" parent="HostPanel/Panel/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 10
+text = "START"
+
+[node name="JoinPanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -110.0
+offset_right = 120.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="JoinPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JoinPanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="JoinPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 16
+text = "JOIN GAME"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="JoinPanel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddressLabel" type="Label" parent="JoinPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "SERVER ADDRESS"
+
+[node name="AddressInput" type="LineEdit" parent="JoinPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "127.0.0.1"
+placeholder_text = "127.0.0.1"
+alignment = 1
+
+[node name="PortLabel" type="Label" parent="JoinPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "PORT"
+
+[node name="PortInput" type="LineEdit" parent="JoinPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "7777"
+placeholder_text = "7777"
+alignment = 1
+
+[node name="ConnectionStatus" type="Label" parent="JoinPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="JoinPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="JoinPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="JoinPanel/Panel/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "BACK"
+
+[node name="ConnectButton" type="Button" parent="JoinPanel/Panel/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 10
+text = "CONNECT"
+
+[node name="SettingsPanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -130.0
+offset_right = 120.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="SettingsPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.35, 1)
+theme_override_font_sizes/font_size = 16
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SettingsPanel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SensLabel" type="Label" parent="SettingsPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "MOUSE SENSITIVITY"
+
+[node name="SensSlider" type="HSlider" parent="SettingsPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.001
+max_value = 0.05
+step = 0.001
+value = 0.01
+
+[node name="FovLabel" type="Label" parent="SettingsPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "FOV: 90"
+
+[node name="FovSlider" type="HSlider" parent="SettingsPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 60.0
+max_value = 120.0
+step = 5.0
+value = 90.0
+
+[node name="AspectLabel" type="Label" parent="SettingsPanel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "ASPECT RATIO"
+
+[node name="AspectOption" type="OptionButton" parent="SettingsPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+
+[node name="Spacer2" type="Control" parent="SettingsPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="SettingsPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "BACK"
+
+[connection signal="pressed" from="MainPanel/VBoxContainer/ButtonContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/ButtonContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/ButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="HostPanel/Panel/VBoxContainer/MaxPlayersSlider" to="." method="_on_max_players_slider_value_changed"]
+[connection signal="item_selected" from="HostPanel/Panel/VBoxContainer/MapOption" to="." method="_on_map_option_item_selected"]
+[connection signal="pressed" from="HostPanel/Panel/VBoxContainer/ButtonContainer/BackButton" to="." method="_on_host_back_pressed"]
+[connection signal="pressed" from="HostPanel/Panel/VBoxContainer/ButtonContainer/StartHostButton" to="." method="_on_start_host_pressed"]
+[connection signal="pressed" from="JoinPanel/Panel/VBoxContainer/ButtonContainer/BackButton" to="." method="_on_join_back_pressed"]
+[connection signal="pressed" from="JoinPanel/Panel/VBoxContainer/ButtonContainer/ConnectButton" to="." method="_on_connect_pressed"]
+[connection signal="value_changed" from="SettingsPanel/Panel/VBoxContainer/SensSlider" to="." method="_on_sens_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/Panel/VBoxContainer/FovSlider" to="." method="_on_fov_slider_value_changed"]
+[connection signal="item_selected" from="SettingsPanel/Panel/VBoxContainer/AspectOption" to="." method="_on_aspect_option_item_selected"]
+[connection signal="pressed" from="SettingsPanel/Panel/VBoxContainer/BackButton" to="." method="_on_settings_back_pressed"]

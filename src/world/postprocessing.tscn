@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://rj43i5q0vlx1"]
+[gd_scene load_steps=7 format=3 uid="uid://rj43i5q0vlx1"]
 
 [ext_resource type="Shader" path="res://assets/shaders/postprocessing.gdshader" id="1_05vwj"]
-[ext_resource type="PackedScene" uid="uid://dni5vb1iypuy8" path="res://src/world/World.tscn" id="1_g2nym"]
+[ext_resource type="PackedScene" uid="uid://xsypwonoymoq" path="res://src/world/level1.tscn" id="2_7rfvb"]
+[ext_resource type="Script" path="res://src/world/level_1.gd" id="3_yds1q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rvbn6"]
 shader = ExtResource("1_05vwj")
@@ -16,7 +17,7 @@ font_names = PackedStringArray("AppleGothic")
 [sub_resource type="LabelSettings" id="LabelSettings_63xc0"]
 line_spacing = 2.0
 font = SubResource("SystemFont_arvoj")
-font_size = 10
+font_size = 8
 font_color = Color(1, 0, 0.313726, 1)
 shadow_offset = Vector2(20, 20)
 
@@ -44,4 +45,5 @@ size = Vector2i(512, 256)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="World" parent="SubViewport" instance=ExtResource("1_g2nym")]
+[node name="level_1" parent="SubViewport" instance=ExtResource("2_7rfvb")]
+script = ExtResource("3_yds1q")

@@ -1,7 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://nv701fwk0x2v"]
+[gd_scene load_steps=29 format=3 uid="uid://nv701fwk0x2v"]
 
 [ext_resource type="Script" path="res://src/player/player3d.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dgnugu3vp2kq0" path="res://icon.png" id="2"]
+[ext_resource type="Script" path="res://src/player/stamina_component.gd" id="3_stamina"]
+[ext_resource type="Script" path="res://src/player/hitbox_component.gd" id="4_hitbox"]
+[ext_resource type="Script" path="res://src/player/hurtbox_component.gd" id="5_hurtbox"]
+[ext_resource type="Script" path="res://src/player/player_state_machine.gd" id="6_statemachine"]
+[ext_resource type="Script" path="res://src/player/states/idle_state.gd" id="7_idle"]
+[ext_resource type="Script" path="res://src/player/states/move_state.gd" id="8_move"]
+[ext_resource type="Script" path="res://src/player/states/air_state.gd" id="9_air"]
+[ext_resource type="Script" path="res://src/player/states/dash_state.gd" id="10_dash"]
+[ext_resource type="Script" path="res://src/player/states/crouch_state.gd" id="11_crouch"]
+[ext_resource type="Script" path="res://src/player/states/slide_state.gd" id="12_slide"]
+[ext_resource type="Script" path="res://src/player/states/attack_state.gd" id="13_attack"]
+[ext_resource type="Script" path="res://src/player/states/block_state.gd" id="14_block"]
+[ext_resource type="Script" path="res://src/player/states/parry_state.gd" id="15_parry"]
+[ext_resource type="Script" path="res://src/player/states/stun_state.gd" id="16_stun"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cbtg8"]
 
@@ -186,13 +200,19 @@ _data = {
 "sword attack 2": SubResource("Animation_2tg1y")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hitbox"]
+size = Vector3(1.5, 0.5, 2)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hurtbox"]
+radius = 0.4
+height = 1.8
+
 [node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988919, 0)
 script = ExtResource("1")
-angForCamToLearpTo = 100.0
-XangForCamToLearpTo = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_cbtg8")
 
 [node name="head" type="Node3D" parent="."]
@@ -227,3 +247,61 @@ omni_range = 6.80265
 libraries = {
 "": SubResource("AnimationLibrary_fruwa")
 }
+
+[node name="StaminaComponent" type="Node" parent="."]
+script = ExtResource("3_stamina")
+
+[node name="HitboxComponent" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -1)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+script = ExtResource("4_hitbox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("BoxShape3D_hitbox")
+
+[node name="HurtboxComponent" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("5_hurtbox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
+shape = SubResource("CapsuleShape3D_hurtbox")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("6_statemachine")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("7_idle")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("8_move")
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("9_air")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("10_dash")
+
+[node name="Crouch" type="Node" parent="StateMachine"]
+script = ExtResource("11_crouch")
+
+[node name="Slide" type="Node" parent="StateMachine"]
+script = ExtResource("12_slide")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("13_attack")
+
+[node name="Block" type="Node" parent="StateMachine"]
+script = ExtResource("14_block")
+
+[node name="Parry" type="Node" parent="StateMachine"]
+script = ExtResource("15_parry")
+
+[node name="Stun" type="Node" parent="StateMachine"]
+script = ExtResource("16_stun")

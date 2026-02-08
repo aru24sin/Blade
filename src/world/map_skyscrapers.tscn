@@ -1,0 +1,731 @@
+[gd_scene load_steps=32 format=3 uid="uid://skyscrapers_map"]
+
+[ext_resource type="Script" path="res://src/world/arena.gd" id="1_arena"]
+[ext_resource type="Script" path="res://src/world/spawn_point.gd" id="2_spawn"]
+[ext_resource type="Script" path="res://src/world/psx_arena_setup.gd" id="3_psx_setup"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+sky_top_color = Color(0.02, 0.02, 0.08, 1)
+sky_horizon_color = Color(0.15, 0.08, 0.12, 1)
+ground_bottom_color = Color(0.01, 0.01, 0.03, 1)
+ground_horizon_color = Color(0.1, 0.05, 0.08, 1)
+sun_curve = 0.02
+
+[sub_resource type="Sky" id="Sky_main"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 2
+sky = SubResource("Sky_main")
+ambient_light_source = 2
+ambient_light_color = Color(0.15, 0.12, 0.2, 1)
+ambient_light_energy = 0.3
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.2
+fog_enabled = true
+fog_light_color = Color(0.1, 0.08, 0.15, 1)
+fog_density = 0.008
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.08, 0.06, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="Material_concrete"]
+albedo_color = Color(0.25, 0.23, 0.22, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Material_glass"]
+albedo_color = Color(0.2, 0.3, 0.4, 0.6)
+metallic = 0.3
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.1, 0.15, 0.25, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="StandardMaterial3D" id="Material_steel"]
+albedo_color = Color(0.35, 0.35, 0.38, 1)
+metallic = 0.8
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="Material_floor"]
+albedo_color = Color(0.18, 0.17, 0.16, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Material_neon_red"]
+emission_enabled = true
+emission = Color(1, 0.2, 0.3, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="StandardMaterial3D" id="Material_neon_blue"]
+emission_enabled = true
+emission = Color(0.2, 0.5, 1, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_building_main"]
+size = Vector3(25, 80, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_building_main"]
+size = Vector3(25, 80, 25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor_plate"]
+size = Vector3(23, 1, 23)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor_plate"]
+size = Vector3(23, 1, 23)
+
+[sub_resource type="BoxMesh" id="BoxMesh_beam"]
+size = Vector3(2, 12, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_beam"]
+size = Vector3(2, 12, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bridge"]
+size = Vector3(18, 1, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bridge"]
+size = Vector3(18, 1, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_window_frame"]
+size = Vector3(6, 8, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_window_frame"]
+size = Vector3(6, 8, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ledge"]
+size = Vector3(8, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ledge"]
+size = Vector3(8, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_scaffold"]
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_scaffold"]
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_neon_strip"]
+size = Vector3(0.2, 0.2, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ac_unit"]
+size = Vector3(3, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ac_unit"]
+size = Vector3(3, 2, 2)
+
+[node name="Skyscrapers" type="Node3D"]
+script = ExtResource("1_arena")
+
+[node name="PSXSetup" type="Node" parent="."]
+script = ExtResource("3_psx_setup")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, -0.354, 0.354, 0, 0.707, 0.707, -0.5, -0.612, 0.612, 10, 100, 10)
+light_color = Color(0.6, 0.55, 0.7, 1)
+light_energy = 0.4
+shadow_enabled = true
+
+[node name="MoonLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866, -0.354, -0.354, 0, 0.707, -0.707, 0.5, -0.612, -0.612, -10, 100, -10)
+light_color = Color(0.4, 0.45, 0.6, 1)
+light_energy = 0.2
+
+[node name="Buildings" type="Node3D" parent="."]
+
+[node name="Building1" type="Node3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="Structure" type="StaticBody3D" parent="Buildings/Building1" groups=["wall_runnable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building1/Structure"]
+mesh = SubResource("BoxMesh_building_main")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building1/Structure"]
+shape = SubResource("BoxShape3D_building_main")
+
+[node name="Floor1" type="StaticBody3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building1/Floor1"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building1/Floor1"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor2" type="StaticBody3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building1/Floor2"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building1/Floor2"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor3" type="StaticBody3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building1/Floor3"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building1/Floor3"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor4" type="StaticBody3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building1/Floor4"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building1/Floor4"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Roof" type="StaticBody3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building1/Roof"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building1/Roof"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="ACUnit1" type="StaticBody3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 82, 5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building1/ACUnit1"]
+mesh = SubResource("BoxMesh_ac_unit")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building1/ACUnit1"]
+shape = SubResource("BoxShape3D_ac_unit")
+
+[node name="NeonRed1" type="MeshInstance3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 25, 0)
+mesh = SubResource("BoxMesh_neon_strip")
+surface_material_override/0 = SubResource("Material_neon_red")
+
+[node name="NeonRed2" type="MeshInstance3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 55, 0)
+mesh = SubResource("BoxMesh_neon_strip")
+surface_material_override/0 = SubResource("Material_neon_red")
+
+[node name="Building2" type="Node3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="Structure" type="StaticBody3D" parent="Buildings/Building2" groups=["wall_runnable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building2/Structure"]
+mesh = SubResource("BoxMesh_building_main")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building2/Structure"]
+shape = SubResource("BoxShape3D_building_main")
+
+[node name="Floor1" type="StaticBody3D" parent="Buildings/Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building2/Floor1"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building2/Floor1"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor2" type="StaticBody3D" parent="Buildings/Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building2/Floor2"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building2/Floor2"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor3" type="StaticBody3D" parent="Buildings/Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building2/Floor3"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building2/Floor3"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor4" type="StaticBody3D" parent="Buildings/Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 57, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building2/Floor4"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building2/Floor4"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Roof" type="StaticBody3D" parent="Buildings/Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 75, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building2/Roof"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building2/Roof"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="NeonBlue1" type="MeshInstance3D" parent="Buildings/Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 20, 0)
+mesh = SubResource("BoxMesh_neon_strip")
+surface_material_override/0 = SubResource("Material_neon_blue")
+
+[node name="NeonBlue2" type="MeshInstance3D" parent="Buildings/Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 50, 0)
+mesh = SubResource("BoxMesh_neon_strip")
+surface_material_override/0 = SubResource("Material_neon_blue")
+
+[node name="Building3" type="Node3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+
+[node name="Structure" type="StaticBody3D" parent="Buildings/Building3" groups=["wall_runnable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building3/Structure"]
+mesh = SubResource("BoxMesh_building_main")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building3/Structure"]
+shape = SubResource("BoxShape3D_building_main")
+
+[node name="Floor1" type="StaticBody3D" parent="Buildings/Building3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building3/Floor1"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building3/Floor1"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor2" type="StaticBody3D" parent="Buildings/Building3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building3/Floor2"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building3/Floor2"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor3" type="StaticBody3D" parent="Buildings/Building3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building3/Floor3"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building3/Floor3"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Floor4" type="StaticBody3D" parent="Buildings/Building3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 72, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building3/Floor4"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building3/Floor4"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="Roof" type="StaticBody3D" parent="Buildings/Building3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 90, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings/Building3/Roof"]
+mesh = SubResource("BoxMesh_floor_plate")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building3/Roof"]
+shape = SubResource("BoxShape3D_floor_plate")
+
+[node name="NeonRed3" type="MeshInstance3D" parent="Buildings/Building3"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 30, 13)
+mesh = SubResource("BoxMesh_neon_strip")
+surface_material_override/0 = SubResource("Material_neon_red")
+
+[node name="NeonBlue3" type="MeshInstance3D" parent="Buildings/Building3"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 65, 13)
+mesh = SubResource("BoxMesh_neon_strip")
+surface_material_override/0 = SubResource("Material_neon_blue")
+
+[node name="Bridges" type="Node3D" parent="."]
+
+[node name="Bridge1_2_Low" type="StaticBody3D" parent="Bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bridges/Bridge1_2_Low"]
+mesh = SubResource("BoxMesh_bridge")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/Bridge1_2_Low"]
+shape = SubResource("BoxShape3D_bridge")
+
+[node name="Bridge1_2_Mid" type="StaticBody3D" parent="Bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bridges/Bridge1_2_Mid"]
+mesh = SubResource("BoxMesh_bridge")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/Bridge1_2_Mid"]
+shape = SubResource("BoxShape3D_bridge")
+
+[node name="Bridge1_2_High" type="StaticBody3D" parent="Bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 57, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bridges/Bridge1_2_High"]
+mesh = SubResource("BoxMesh_bridge")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/Bridge1_2_High"]
+shape = SubResource("BoxShape3D_bridge")
+
+[node name="Bridge1_3" type="StaticBody3D" parent="Bridges"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10, 18, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bridges/Bridge1_3"]
+mesh = SubResource("BoxMesh_bridge")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/Bridge1_3"]
+shape = SubResource("BoxShape3D_bridge")
+
+[node name="Bridge2_3" type="StaticBody3D" parent="Bridges"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 10, 27, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bridges/Bridge2_3"]
+mesh = SubResource("BoxMesh_bridge")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/Bridge2_3"]
+shape = SubResource("BoxShape3D_bridge")
+
+[node name="Bridge1_3_High" type="StaticBody3D" parent="Bridges"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10, 45, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bridges/Bridge1_3_High"]
+mesh = SubResource("BoxMesh_bridge")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/Bridge1_3_High"]
+shape = SubResource("BoxShape3D_bridge")
+
+[node name="Bridge2_3_High" type="StaticBody3D" parent="Bridges"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 10, 54, -15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bridges/Bridge2_3_High"]
+mesh = SubResource("BoxMesh_bridge")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/Bridge2_3_High"]
+shape = SubResource("BoxShape3D_bridge")
+
+[node name="Ledges" type="Node3D" parent="."]
+
+[node name="Ledge1_1" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 22, 14)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge1_1"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge1_1"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Ledge1_2" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 37, 14)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge1_2"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge1_2"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Ledge1_3" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 52, 14)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge1_3"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge1_3"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Ledge2_1" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 19, 14)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge2_1"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge2_1"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Ledge2_2" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 34, 14)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge2_2"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge2_2"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Ledge2_3" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 49, 14)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge2_3"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge2_3"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Ledge3_1" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 14, 25, -30)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge3_1"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge3_1"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Ledge3_2" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 14, 43, -30)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge3_2"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge3_2"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Ledge3_3" type="StaticBody3D" parent="Ledges"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 14, 61, -30)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledges/Ledge3_3"]
+mesh = SubResource("BoxMesh_ledge")
+surface_material_override/0 = SubResource("Material_concrete")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledges/Ledge3_3"]
+shape = SubResource("BoxShape3D_ledge")
+
+[node name="Scaffolds" type="Node3D" parent="."]
+
+[node name="Scaffold1" type="StaticBody3D" parent="Scaffolds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, 8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scaffolds/Scaffold1"]
+mesh = SubResource("BoxMesh_scaffold")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scaffolds/Scaffold1"]
+shape = SubResource("BoxShape3D_scaffold")
+
+[node name="Scaffold2" type="StaticBody3D" parent="Scaffolds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 23, 8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scaffolds/Scaffold2"]
+mesh = SubResource("BoxMesh_scaffold")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scaffolds/Scaffold2"]
+shape = SubResource("BoxShape3D_scaffold")
+
+[node name="Scaffold3" type="StaticBody3D" parent="Scaffolds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, -12)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scaffolds/Scaffold3"]
+mesh = SubResource("BoxMesh_scaffold")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scaffolds/Scaffold3"]
+shape = SubResource("BoxShape3D_scaffold")
+
+[node name="Scaffold4" type="StaticBody3D" parent="Scaffolds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 42, -18)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scaffolds/Scaffold4"]
+mesh = SubResource("BoxMesh_scaffold")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scaffolds/Scaffold4"]
+shape = SubResource("BoxShape3D_scaffold")
+
+[node name="Scaffold5" type="StaticBody3D" parent="Scaffolds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 45, -18)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scaffolds/Scaffold5"]
+mesh = SubResource("BoxMesh_scaffold")
+surface_material_override/0 = SubResource("Material_steel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scaffolds/Scaffold5"]
+shape = SubResource("BoxShape3D_scaffold")
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="NeonLight1" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 25, 0)
+light_color = Color(1, 0.3, 0.4, 1)
+light_energy = 2.0
+omni_range = 15.0
+
+[node name="NeonLight2" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 20, 0)
+light_color = Color(0.3, 0.5, 1, 1)
+light_energy = 2.0
+omni_range = 15.0
+
+[node name="NeonLight3" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -17)
+light_color = Color(1, 0.3, 0.4, 1)
+light_energy = 1.5
+omni_range = 12.0
+
+[node name="NeonLight4" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 65, -17)
+light_color = Color(0.3, 0.5, 1, 1)
+light_energy = 1.5
+omni_range = 12.0
+
+[node name="FloorLight1" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 17, 0)
+light_color = Color(1, 0.9, 0.7, 1)
+light_energy = 1.0
+omni_range = 10.0
+
+[node name="FloorLight2" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 14, 0)
+light_color = Color(1, 0.9, 0.7, 1)
+light_energy = 1.0
+omni_range = 10.0
+
+[node name="FloorLight3" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -30)
+light_color = Color(1, 0.9, 0.7, 1)
+light_energy = 1.0
+omni_range = 10.0
+
+[node name="HighLight1" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 62, 0)
+light_color = Color(0.8, 0.7, 1, 1)
+light_energy = 1.2
+omni_range = 12.0
+
+[node name="HighLight2" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 59, 0)
+light_color = Color(0.8, 0.7, 1, 1)
+light_energy = 1.2
+omni_range = 12.0
+
+[node name="HighLight3" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 74, -30)
+light_color = Color(0.8, 0.7, 1, 1)
+light_energy = 1.2
+omni_range = 12.0
+
+[node name="RoofLight1" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 82, 0)
+light_color = Color(0.6, 0.8, 1, 1)
+light_energy = 0.8
+omni_range = 15.0
+
+[node name="RoofLight2" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 77, 0)
+light_color = Color(0.6, 0.8, 1, 1)
+light_energy = 0.8
+omni_range = 15.0
+
+[node name="RoofLight3" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 92, -30)
+light_color = Color(0.6, 0.8, 1, 1)
+light_energy = 0.8
+omni_range = 15.0
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="Spawn1" type="Marker3D" parent="SpawnPoints" groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 16, 0)
+script = ExtResource("2_spawn")
+
+[node name="Spawn2" type="Marker3D" parent="SpawnPoints" groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 13, 0)
+script = ExtResource("2_spawn")
+
+[node name="Spawn3" type="Marker3D" parent="SpawnPoints" groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, -30)
+script = ExtResource("2_spawn")
+
+[node name="Spawn4" type="Marker3D" parent="SpawnPoints" groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 31, 0)
+script = ExtResource("2_spawn")
+
+[node name="Spawn5" type="Marker3D" parent="SpawnPoints" groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 28, 0)
+script = ExtResource("2_spawn")
+
+[node name="Spawn6" type="Marker3D" parent="SpawnPoints" groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37, -30)
+script = ExtResource("2_spawn")
+
+[node name="Spawn7" type="Marker3D" parent="SpawnPoints" groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 81, 0)
+script = ExtResource("2_spawn")
+
+[node name="Spawn8" type="Marker3D" parent="SpawnPoints" groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 76, 0)
+script = ExtResource("2_spawn")
+
+[node name="ItemSpawner" type="Node3D" parent="."]
+
+[node name="ItemPoint1" type="Marker3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
+
+[node name="ItemPoint2" type="Marker3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31, 0)
+
+[node name="ItemPoint3" type="Marker3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 58, 0)
+
+[node name="ItemPoint4" type="Marker3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 19, -15)
+
+[node name="ItemPoint5" type="Marker3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 28, -15)
+
+[node name="ItemPoint6" type="Marker3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, 0)
+
+[node name="ItemPoint7" type="Marker3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 58, 0)
+
+[node name="ItemPoint8" type="Marker3D" parent="ItemSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 91, -30)
+
+[node name="ItemBoxes" type="Node3D" parent="."]
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://src/player/network_player.tscn")
+spawn_path = NodePath("../Players")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
